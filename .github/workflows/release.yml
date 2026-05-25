@@ -1,47 +1,17 @@
-name: build
+name: release
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
+    tags:
+      - 'v*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  test:
-    name: Test on Ubuntu
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Go
-        uses: actions/setup-go@v5
-        with:
-          go-version-file: go.mod
-          cache: true
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
-
-      - name: Install frontend dependencies
-        working-directory: frontend
-        run: npm ci
-
-      - name: Build frontend
-        working-directory: frontend
-        run: npm run ci
-
-      - name: Run Go tests
-        run: go test ./...
-
-  build-desktop:
-    name: Build ${{ matrix.os-name }}
-    needs: test
+  build-release:
+    name: Build ${{ matrix.os-name }} release artifact
     strategy:
       fail-fast: false
       matrix:
@@ -49,9 +19,11 @@ jobs:
           - os: macos-latest
             os-name: macOS
             artifact-name: GoT0ISCC-macos
+            archive-name: GoT0ISCC-macos.zip
           - os: windows-latest
             os-name: Windows
             artifact-name: GoT0ISCC-windows
+            archive-name: GoT0ISCC-windows.zip
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -78,13 +50,16 @@ jobs:
         run: npm ci
 
       - name: Generate Wails bindings
+        shell: bash
         run: |
           mkdir -p frontend/dist
           if [ ! -f frontend/dist/index.html ]; then
             printf '%s\n' '<!doctype html><html><head><meta charset="UTF-8"><title>GoT0ISCC</title></head><body><div id="root"></div></body></html>' > frontend/dist/index.html
           fi
           wails generate module
-        shell: bash
+
+      - name: Run tests
+        run: go test ./...
 
       - name: Build Wails app (macOS)
         if: runner.os == 'macOS'
@@ -98,17 +73,25 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           mkdir -p artifacts
-          ditto -c -k --sequesterRsrc --keepParent build/bin/GoT0ISCC.app artifacts/GoT0ISCC-macos.zip
+          ditto -c -k --sequesterRsrc --keepParent build/bin/GoT0ISCC.app artifacts/${{ matrix.archive-name }}
 
       - name: Package Windows artifact
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force artifacts | Out-Null
-          Compress-Archive -Path build/bin/GoT0ISCC.exe -DestinationPath artifacts/GoT0ISCC-windows.zip -Force
+          Compress-Archive -Path build/bin/GoT0ISCC.exe -DestinationPath artifacts/${{ matrix.archive-name }} -Force
 
-      - name: Upload artifact
+      - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact-name }}
-          path: artifacts/*
+          path: artifacts/${{ matrix.archive-name }}
+
+      - name: Upload asset to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/${{ matrix.archive-name }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false

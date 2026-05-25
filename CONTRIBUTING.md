@@ -7,7 +7,7 @@ This repository contains the Wails desktop application for `GoT0ISCC`. Runtime d
 ## Development baseline
 
 - Go `1.24.x`
-- Node.js `20+`
+- Node.js `22+`
 - Wails CLI `v2.10.2`
 
 ## Before opening a pull request
@@ -15,7 +15,7 @@ This repository contains the Wails desktop application for `GoT0ISCC`. Runtime d
 1. Install frontend dependencies with `npm ci` in `frontend/`.
 2. Regenerate Wails bindings with `wails generate module` after API signature changes.
 3. Run `go test ./...` from the repository root.
-4. Run `npm run build` in `frontend/`.
+4. Run `npm run ci` in `frontend/`.
 5. Verify that no runtime data or build artifacts were staged.
 
 ## Commit scope

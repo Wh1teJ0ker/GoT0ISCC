@@ -1,16 +1,12 @@
 import {
-  Activity,
-  BarChart3,
   BookOpenCheck,
   ClipboardList,
   FileText,
   FlaskConical,
   LayoutDashboard,
-  ListChecks,
   ScrollText,
   Shield,
   Swords,
-  TerminalSquare,
   UserRoundCog,
 } from "lucide-react";
 
@@ -120,30 +116,3 @@ export const pageMeta = {
     title: "日志管理",
   },
 };
-
-export const dashboardStats = [
-  {label: "当前账号提交", value: "运行态已接", note: "账号运行态、远端提交数和会话状态已迁移到 SQLite", icon: ListChecks},
-  {label: "WP 提交情况", value: "-", note: "-", icon: FileText},
-  {label: "还缺少的题", value: "-", note: "-", icon: BarChart3},
-  {label: "沙盒执行器", value: "Ready", note: "Python 代码沙盒已纳入新版架构", icon: TerminalSquare},
-];
-
-export const dashboardRows = [
-  {track: "练武题", total: "-", submitted: "-", wp: "-", missing: "-", status: "planned"},
-  {track: "擂台题", total: "-", submitted: "-", wp: "-", missing: "-", status: "planned"},
-  {track: "理论题", total: "-", submitted: "-", wp: "-", missing: "-", status: "planned"},
-  {track: "实战题", total: "-", submitted: "-", wp: "-", missing: "-", status: "planned"},
-];
-
-export const moduleFeatures = [
-  "查看当前 ISCC 账号的题目提交状态",
-  "查看当前账号的 WP 提交情况",
-  "识别还缺少哪些题、哪些 WP 没交",
-  "按练武题 / 擂台题 / 理论题 / 实战题分栏管理",
-];
-
-export const activityItems = [
-  {icon: Activity, title: "系统运行", value: "Wails dev ready"},
-  {icon: TerminalSquare, title: "Python 沙盒", value: "local-isolated"},
-  {icon: FileText, title: "WP 管理", value: "本地规范检查 + 上传入口"},
-];

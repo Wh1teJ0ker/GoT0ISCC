@@ -17,7 +17,7 @@
 - Go `1.24.x`
 - Wails `v2.10.2`
 - React `18`
-- Vite `3`
+- Vite `6`
 - SQLite
 
 ## Repository layout
@@ -38,7 +38,7 @@ GoT0ISCC/
 ## Prerequisites
 
 - Go `1.24.x`
-- Node.js `20+`
+- Node.js `22+`
 - Wails CLI `v2.10.2`
 
 Install Wails CLI:
@@ -72,7 +72,7 @@ Validate the repository:
 
 ```bash
 go test ./...
-cd frontend && npm run build
+cd frontend && npm run ci
 ```
 
 ## Data policy
