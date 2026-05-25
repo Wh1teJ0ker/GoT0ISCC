@@ -64,7 +64,7 @@ jobs:
           - os: macos-latest
             os-name: macOS
             artifact-name: GoT0ISCC-macos
-          - os: windows-2025
+          - os: windows-2025-vs2026
             os-name: Windows
             artifact-name: GoT0ISCC-windows
     runs-on: ${{ matrix.os }}
