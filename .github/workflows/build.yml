@@ -123,7 +123,7 @@ jobs:
           Compress-Archive -Path (Join-Path $stagingDir '*') -DestinationPath artifacts/GoT0ISCC-windows.zip -Force
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.artifact-name }}
           path: artifacts/*

@@ -86,7 +86,7 @@ jobs:
           Compress-Archive -Path (Join-Path $stagingDir '*') -DestinationPath artifacts/${{ matrix.archive-name }} -Force
 
       - name: Upload workflow artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.artifact-name }}
           path: artifacts/${{ matrix.archive-name }}
