@@ -1,0 +1,150 @@
+:root {
+  color-scheme: dark;
+  --bg: #0d1015;
+  --panel: #171c24;
+  --panel-2: #0f141b;
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #edf3fb;
+  --muted: #9cadc2;
+  --accent: #59d89a;
+  --accent-2: #f6c75d;
+  --danger: #ff7a7a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 400px;
+  min-height: 640px;
+  background:
+    radial-gradient(circle at top right, rgba(89, 216, 154, 0.16), transparent 36%),
+    radial-gradient(circle at bottom left, rgba(246, 199, 93, 0.12), transparent 30%),
+    var(--bg);
+  color: var(--text);
+  font: 13px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.shell {
+  padding: 18px;
+}
+
+.hero {
+  margin-bottom: 14px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--accent-2);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.lede {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.panel {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.runtime {
+  min-height: 76px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--panel-2);
+  white-space: pre-wrap;
+}
+
+.runtime.empty,
+.hint {
+  color: var(--muted);
+}
+
+.row,
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.field {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.field span {
+  color: var(--muted);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  padding: 10px 12px;
+  outline: none;
+}
+
+input[type="file"] {
+  max-width: 100%;
+  color: var(--muted);
+}
+
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 9px 12px;
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  cursor: pointer;
+}
+
+button.primary {
+  background: linear-gradient(135deg, var(--accent), #287f5d);
+  color: #08110d;
+  font-weight: 700;
+}
+
+.actions,
+.footer-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-actions {
+  margin-top: 14px;
+}

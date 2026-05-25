@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "GoT0ISCC Theory Route Pilot",
+  "version": "0.1.0",
+  "description": "在 ISCC 理论题页面自动识别题目、匹配本地题库并按节流规则自动答题。",
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://iscc.isclab.org.cn/*",
+    "https://*/responses",
+    "http://*/responses"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Theory Route Pilot",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://iscc.isclab.org.cn/*"
+      ],
+      "js": [
+        "shared.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

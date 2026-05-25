@@ -1,0 +1,62 @@
+.console-block {
+  min-height: 120px;
+  width: 100%;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  background: hsl(var(--surface));
+  color: hsl(var(--surface-foreground));
+  padding: 1rem;
+  font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.log-terminal {
+  font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+  background-image:
+    linear-gradient(180deg, rgba(148, 163, 184, 0.03), transparent 18%),
+    radial-gradient(circle at top, rgba(34, 211, 238, 0.08), transparent 28%);
+}
+
+.log-terminal::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.log-terminal::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.log-terminal::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.3);
+}
+
+.log-terminal::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+.log-session-list::-webkit-scrollbar,
+.log-session-preview::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+.log-session-list::-webkit-scrollbar-track,
+.log-session-preview::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.log-session-list::-webkit-scrollbar-thumb,
+.log-session-preview::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.35);
+}
+
+.log-session-list::-webkit-scrollbar-thumb:hover,
+.log-session-preview::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.5);
+}

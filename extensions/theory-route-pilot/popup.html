@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Theory Route Pilot</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">ISCC / Theory</p>
+        <h1>Theory Route Pilot</h1>
+        <p class="lede">识别理论题路由后自动启动。插件独立运行，不改原有桌面端逻辑。</p>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>运行状态</h2>
+          <button id="refresh-runtime" type="button">刷新</button>
+        </div>
+        <div id="runtime" class="runtime empty">尚未读取运行状态</div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>插件开关</h2>
+        </div>
+        <label class="row toggle">
+          <span>启用插件</span>
+          <input id="enabled" type="checkbox">
+        </label>
+        <label class="row toggle">
+          <span>理论题路由自动启动</span>
+          <input id="autoStart" type="checkbox">
+        </label>
+        <label class="row toggle">
+          <span>满足阈值时自动提交</span>
+          <input id="autoSubmit" type="checkbox">
+        </label>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>AI 设置</h2>
+        </div>
+        <label class="row toggle">
+          <span>启用 AI 复核</span>
+          <input id="aiEnabled" type="checkbox">
+        </label>
+        <label class="field">
+          <span>Base URL</span>
+          <input id="aiBaseURL" type="text" placeholder="https://api.openai.com/v1">
+        </label>
+        <label class="field">
+          <span>API Key</span>
+          <input id="aiAPIKey" type="password" placeholder="sk-...">
+        </label>
+        <label class="field">
+          <span>模型</span>
+          <input id="aiModel" type="text" placeholder="gpt-5.4">
+        </label>
+        <label class="field">
+          <span>推理强度</span>
+          <input id="aiReasoningEffort" type="text" placeholder="medium">
+        </label>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>阈值与节流</h2>
+        </div>
+        <label class="field">
+          <span>题库自动提交阈值</span>
+          <input id="localConfidenceThreshold" type="number" min="0" max="1" step="0.01">
+        </label>
+        <label class="field">
+          <span>AI 自动提交阈值</span>
+          <input id="aiConfidenceThreshold" type="number" min="0" max="1" step="0.01">
+        </label>
+        <label class="field">
+          <span>抓题冷却(ms)</span>
+          <input id="fetchCooldownMs" type="number" min="0" step="100">
+        </label>
+        <label class="field">
+          <span>提交前冷却(ms)</span>
+          <input id="submitCooldownMs" type="number" min="0" step="100">
+        </label>
+        <label class="field">
+          <span>题间冷却(ms)</span>
+          <input id="questionCooldownMs" type="number" min="0" step="100">
+        </label>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>题库</h2>
+        </div>
+        <p id="bank-meta" class="hint">未导入题库</p>
+        <div class="actions">
+          <input id="bank-file" type="file" accept=".json">
+          <button id="import-bank" type="button">导入 JSON 题库</button>
+        </div>
+      </section>
+
+      <section class="footer-actions">
+        <button id="save-settings" type="button" class="primary">保存配置</button>
+        <button id="clear-runtime" type="button">清空状态</button>
+      </section>
+    </main>
+    <script src="shared.js"></script>
+    <script src="popup.js"></script>
+  </body>
+  </html>

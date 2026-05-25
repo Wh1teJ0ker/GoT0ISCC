@@ -1,0 +1,19 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "GoT0ISCC",
+  "outputfilename": "GoT0ISCC",
+  "frontend:dir": "frontend",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "build:dir": "build",
+  "author": {
+    "name": "Wh1teJ0ker"
+  },
+  "info": {
+    "companyName": "GoT0",
+    "productName": "GoT0ISCC",
+    "productVersion": "0.1.0"
+  }
+}

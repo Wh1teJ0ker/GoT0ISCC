@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: 210 20% 98%;
+    --foreground: 218 28% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 218 28% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 218 28% 12%;
+
+    --primary: 199 86% 34%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 205 22% 92%;
+    --secondary-foreground: 217 29% 18%;
+
+    --muted: 205 22% 94%;
+    --muted-foreground: 216 12% 43%;
+
+    --accent: 193 28% 90%;
+    --accent-foreground: 218 28% 12%;
+
+    --destructive: 0 74% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 18% 86%;
+    --input: 210 18% 84%;
+    --ring: 199 86% 34%;
+    --surface: 214 28% 14%;
+    --surface-foreground: 195 20% 94%;
+    --ok: 151 58% 36%;
+    --warn: 38 92% 44%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background:
+      linear-gradient(90deg, rgb(255 255 255 / 0.55) 1px, transparent 1px),
+      linear-gradient(180deg, rgb(255 255 255 / 0.55) 1px, transparent 1px),
+      linear-gradient(180deg, hsl(210 20% 98%), hsl(204 25% 96%));
+    background-size: 28px 28px, 28px 28px, auto;
+    color: hsl(var(--foreground));
+    font-family: "Avenir Next", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  textarea,
+  input {
+    font: inherit;
+  }
+}
+
+@layer utilities {
+  .log-terminal,
+  .log-session-list,
+  .log-session-preview {
+    scrollbar-width: thin;
+  }
+
+  .log-terminal {
+    scrollbar-color: rgb(161 161 170 / 0.82) rgb(244 244 245 / 0.96);
+    font-variant-ligatures: none;
+  }
+
+  .log-session-list,
+  .log-session-preview {
+    scrollbar-color: rgb(161 161 170 / 0.78) transparent;
+  }
+
+  .log-terminal::-webkit-scrollbar,
+  .log-session-list::-webkit-scrollbar,
+  .log-session-preview::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .log-terminal::-webkit-scrollbar-track {
+    background: rgb(244 244 245 / 0.96);
+  }
+
+  .log-session-list::-webkit-scrollbar-track,
+  .log-session-preview::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .log-terminal::-webkit-scrollbar-thumb,
+  .log-session-list::-webkit-scrollbar-thumb,
+  .log-session-preview::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background-clip: content-box;
+  }
+
+  .log-terminal::-webkit-scrollbar-thumb {
+    background-color: rgb(161 161 170 / 0.88);
+  }
+
+  .log-session-list::-webkit-scrollbar-thumb,
+  .log-session-preview::-webkit-scrollbar-thumb {
+    background-color: rgb(161 161 170 / 0.8);
+  }
+}
