@@ -108,7 +108,19 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force artifacts | Out-Null
-          Compress-Archive -Path build/bin/GoT0ISCC.exe -DestinationPath artifacts/GoT0ISCC-windows.zip -Force
+          $candidates = @(
+            "build/bin/GoT0ISCC.exe",
+            "build/bin/GoT0ISCC"
+          )
+          $source = $candidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $source) {
+            throw "Windows build artifact not found. Checked: $($candidates -join ', ')"
+          }
+          $stagingDir = Join-Path $PWD "artifacts/windows-package"
+          New-Item -ItemType Directory -Force $stagingDir | Out-Null
+          $targetName = Split-Path $source -Leaf
+          Copy-Item -Path $source -Destination (Join-Path $stagingDir $targetName) -Force
+          Compress-Archive -Path (Join-Path $stagingDir '*') -DestinationPath artifacts/GoT0ISCC-windows.zip -Force
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
