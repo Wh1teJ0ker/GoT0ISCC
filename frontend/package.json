@@ -13,13 +13,13 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",
-    "react": "^18.2.0",
+    "react": "^19.2.6",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.15.1",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@types/react": "^18.3.29",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^5.1.4",
     "autoprefixer": "^10.4.23",
