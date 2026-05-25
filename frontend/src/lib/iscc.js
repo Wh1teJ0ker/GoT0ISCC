@@ -142,13 +142,6 @@ export const moduleFeatures = [
   "按练武题 / 擂台题 / 理论题 / 实战题分栏管理",
 ];
 
-export const placeholderItems = [
-  "当前账号状态",
-  "赛道题目清单与完成度",
-  "提交情况、WP 状态、缺题清单",
-  "本地缓存与运行数据",
-];
-
 export const activityItems = [
   {icon: Activity, title: "系统运行", value: "Wails dev ready"},
   {icon: TerminalSquare, title: "Python 沙盒", value: "local-isolated"},

@@ -1,12 +1,12 @@
 node_modules/
 frontend/node_modules/
-frontend/dist/
-frontend/wailsjs/
+frontend/dist/*
+!frontend/dist/index.html
 
 bin/
 build/
-runtime/
-data/
+/runtime/
+/data/
 
 *.exe
 *.test
@@ -16,3 +16,5 @@ data/
 .DS_Store
 .venv68/
 __pycache__/
+.idea/
+.vscode/
