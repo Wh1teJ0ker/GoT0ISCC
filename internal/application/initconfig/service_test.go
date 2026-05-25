@@ -21,21 +21,57 @@ func TestEnsureInitializedSeedsMainDatabase(t *testing.T) {
 	layout.TheoryBankDBPath = layout.AppDatabasePath
 	layout.AppDataRoot = tempDir
 	layout.AppRuntimeRoot = filepath.Join(tempDir, "runtime")
-	previous, err := os.Getwd()
-	if err != nil {
-		t.Fatalf("get wd: %v", err)
-	}
-	for {
-		candidate := filepath.Join(previous, "data", "got0iscc.init.sql")
-		if _, err := os.Stat(candidate); err == nil {
-			layout.InitSeedSQLPath = candidate
-			break
-		}
-		parent := filepath.Dir(previous)
-		if parent == previous {
-			t.Fatalf("find seed sql")
-		}
-		previous = parent
+	layout.InitSeedSQLPath = filepath.Join(tempDir, "got0iscc.init.sql")
+	if err := os.WriteFile(layout.InitSeedSQLPath, []byte(`
+INSERT INTO theory_bank_questions (
+  question_hash,
+  question,
+  normalized_question,
+  compact_question,
+  selection_type,
+  source_kind,
+  source_ref,
+  options_json,
+  answer_keys_json,
+  answer_texts_json,
+  keywords_json,
+  search_text,
+  confidence,
+  needs_review,
+  review_status,
+  review_reason,
+  duplicate_group,
+  raw_payload_json,
+  captured_count,
+  last_captured_at,
+  created_at,
+  updated_at
+) VALUES (
+  'test-hash',
+  'question',
+  'question',
+  'question',
+  'single',
+  'test',
+  'unit',
+  '[]',
+  '[]',
+  '[]',
+  '[]',
+  'question',
+  1,
+  0,
+  'approved',
+  '',
+  '',
+  '{}',
+  0,
+  '',
+  '2026-01-01T00:00:00Z',
+  '2026-01-01T00:00:00Z'
+);
+`), 0o644); err != nil {
+		t.Fatalf("write seed sql: %v", err)
 	}
 
 	store, err := sqlitestore.Open(layout.AppDatabasePath)
