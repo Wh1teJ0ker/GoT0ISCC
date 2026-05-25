@@ -49,15 +49,6 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      - name: Generate Wails bindings
-        shell: bash
-        run: |
-          mkdir -p frontend/dist
-          if [ ! -f frontend/dist/index.html ]; then
-            printf '%s\n' '<!doctype html><html><head><meta charset="UTF-8"><title>GoT0ISCC</title></head><body><div id="root"></div></body></html>' > frontend/dist/index.html
-          fi
-          wails generate module
-
       - name: Run tests
         run: go test ./...
 
